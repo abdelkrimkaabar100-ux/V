@@ -1,55 +1,62 @@
-# Active Context: Vitamin Analyzer App
+# Active Context: Arabic Islamic Poetry Platform (رحيق诗词)
 
 ## Current State
 
 **App Status**: ✅ Ready for use
 
-The application is a Vitamin Deficiency Analyzer that determines what vitamins you need based on symptoms. Users can select symptoms across multiple categories and get personalized vitamin recommendations.
+The application is a comprehensive platform for exploring, understanding, and creating Arabic-Islamic poetry with deep analysis features.
 
 ## Recently Completed
 
-- [x] Base Next.js 16 setup with App Router
-- [x] TypeScript configuration with strict mode
-- [x] Tailwind CSS 4 integration
-- [x] ESLint configuration
-- [x] Memory bank documentation
-- [x] Recipe system for common features
-- [x] Vitamin Analyzer app with Arabic RTL support
-- [x] Comprehensive symptoms-to-vitamins mapping data
-- [x] Interactive symptom selection UI
-- [x] Results analysis with scoring system
-- [x] Share results functionality
+- [x] Created SPEC.md with full project specification
+- [x] Implemented poet and poem data (src/data/poets.ts) with 5 Islamic poets and 8 poems
+- [x] Built Navigation component with responsive design
+- [x] Created Home page with featured poets and poems
+- [x] Built Poets listing page with poet cards
+- [x] Created Poet detail page with biography and poems
+- [x] Built Poem detail page with tabbed analysis (الشرح, المعنى, السياق, المشاعر)
+- [x] Implemented Poetry Writing tool with templates and prompts
+- [x] Created Learning Game with 3 difficulty levels (مبتدئ, متوسط, محترف)
+- [x] Applied green background (#1a472a) with gold accents (#d4af37) and black Arabic text
 
 ## Current Structure
 
 | File/Directory | Purpose | Status |
 |----------------|---------|--------|
-| `src/app/page.tsx` | Home page with symptom selection | ✅ Ready |
+| `src/app/page.tsx` | Home page with featured content | ✅ Ready |
 | `src/app/layout.tsx` | Root layout with Arabic RTL | ✅ Ready |
-| `src/app/globals.css` | Global styles | ✅ Ready |
-| `src/data/vitamins.ts` | Vitamins & symptoms data | ✅ Ready |
-| `src/components/Results.tsx` | Results display component | ✅ Ready |
-| `.kilocode/` | AI context & recipes | ✅ Ready |
+| `src/app/globals.css` | Global styles with theme | ✅ Ready |
+| `src/data/poets.ts` | Poets and poems data | ✅ Ready |
+| `src/components/Navigation.tsx` | Navigation component | ✅ Ready |
+| `src/app/poets/` | Poets listing page | ✅ Ready |
+| `src/app/poets/[id]/` | Poet detail page | ✅ Ready |
+| `src/app/poets/[id]/poems/[poemId]/` | Poem detail with analysis | ✅ Ready |
+| `src/app/write/` | Poetry writing tool | ✅ Ready |
+| `src/app/learn/` | Learning game | ✅ Ready |
 
 ## App Features
 
-1. **Symptom Categories**: 8 categories (skin, energy, bones, eyes, immunity, digestion, nerves, muscles)
-2. **40+ Symptoms**: Comprehensive symptom list with Arabic translations
-3. **17 Vitamins/Minerals**: Including Vit A, B-complex, C, D, E, K, Iron, Calcium, Magnesium, Zinc, Omega-3, Biotin
-4. **Smart Scoring**: Analyzes symptoms to rank vitamin deficiencies by severity
-5. **Share Results**: Export or share analysis results
+1. **Poet Database**: 5 poets from Prophetic era (علي بن أبي طالب, حسن بن ثابت, كعب بن زهير, etc.)
+2. **Poem Analysis**: Deep analysis with 4 aspects - الشرح, المعنى, السياق, المشاعر
+3. **Poetry Writing**: Interactive tool with templates and prompts
+4. **Learning Game**: 3 difficulty levels with quiz questions
+5. **Theme**: Green background (#1a472a), gold accents (#d4af37), black Arabic text
 
 ## Current Focus
 
-The Vitamin Analyzer app is complete and ready for use. Future enhancements could include:
-- Adding more symptoms and categories
-- Integrating with health APIs
-- Adding user accounts to track history
-- Adding multi-language support
+The Arabic Islamic Poetry Platform is complete and ready for use. Users can:
+- Explore poets and their biographies
+- Read and analyze poems in depth
+- Write their own poetry with guidance
+- Learn through interactive games
 
 ## Session History
 
 | Date | Changes |
 |------|---------|
 | Initial | Template created with base setup |
-| Today | Built complete Vitamin Analyzer app with Arabic RTL support |
+| Today | Built complete Arabic Islamic Poetry Platform with all features |
+
+## Note
+
+This replaced the previous Vitamin Analyzer app. The project now focuses on Arabic-Islamic poetry education.
