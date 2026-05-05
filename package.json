@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-template",
+  "name": "rachida-familia",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "groq-sdk": "^1.1.2",
     "next": "^16.1.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"

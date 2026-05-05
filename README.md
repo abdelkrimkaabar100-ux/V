@@ -1,69 +1,86 @@
-🧠 Symptom-Based Vitamin Analyzer
-A smart tool that helps you identify potential vitamin deficiencies based on your physical symptoms.
-📌 Overview
-This project is designed to analyze user-reported physical symptoms and provide insights into possible vitamin deficiencies. Instead of relying on guesswork, the system uses structured symptom–nutrient mapping inspired by medical and psychological research.
-The goal is to make health awareness more accessible, especially for individuals who may not have immediate access to medical consultation.
-🚀 Features
-🔍 Analyze physical symptoms input by the user
-🧬 Suggest possible vitamin deficiencies (e.g., Vitamin D, B12, Iron)
-📊 Simple and intuitive interface
-🤖 Ready for AI integration (future enhancement)
-🌍 Scalable into a full health-tech platform
-🧠 How It Works
-The user inputs their symptoms (e.g., fatigue, hair loss, pale skin)
-The system matches symptoms with known deficiency patterns
-It returns a list of possible vitamin deficiencies with explanations
-🛠️ Tech Stack
-Frontend: (e.g., React / HTML / CSS)
-Backend: (e.g., Node.js / Python)
-AI Integration: (Future plan)
-Database: (Optional - for storing symptom patterns)
-⚠️ Disclaimer
-This tool does not replace professional medical advice.
-It is intended for educational and informational purposes only.
-Always consult a qualified healthcare provider for diagnosis and treatment.
-📈 Future Vision
-Integration with AI models for more accurate predictions
-Personalized health recommendations
-Connection with wearable devices
-Integration into the Soon platform for mental & physical health
-🤝 Contributing
-Contributions are welcome!
-Feel free to open issues or submit pull requests.
-📬 Contact
-Created by [Your Name]
-If you're interested in collaboration, feel free to reach out.🧠 Symptom-Based Vitamin Analyzer
-A smart tool that helps you identify potential vitamin deficiencies based on your physical symptoms.
-📌 Overview
-This project is designed to analyze user-reported physical symptoms and provide insights into possible vitamin deficiencies. Instead of relying on guesswork, the system uses structured symptom–nutrient mapping inspired by medical and psychological research.
-The goal is to make health awareness more accessible, especially for individuals who may not have immediate access to medical consultation.
-🚀 Features
-🔍 Analyze physical symptoms input by the user
-🧬 Suggest possible vitamin deficiencies (e.g., Vitamin D, B12, Iron)
-📊 Simple and intuitive interface
-🤖 Ready for AI integration (future enhancement)
-🌍 Scalable into a full health-tech platform
-🧠 How It Works
-The user inputs their symptoms (e.g., fatigue, hair loss, pale skin)
-The system matches symptoms with known deficiency patterns
-It returns a list of possible vitamin deficiencies with explanations
-🛠️ Tech Stack
-Frontend: (e.g., React / HTML / CSS)
-Backend: (e.g., Node.js / Python)
-AI Integration: (Future plan)
-Database: (Optional - for storing symptom patterns)
-⚠️ Disclaimer
-This tool does not replace professional medical advice.
-It is intended for educational and informational purposes only.
-Always consult a qualified healthcare provider for diagnosis and treatment.
-📈 Future Vision
-Integration with AI models for more accurate predictions
-Personalized health recommendations
-Connection with wearable devices
-Integration into the Soon platform for mental & physical health
-🤝 Contributing
-Contributions are welcome!
-Feel free to open issues or submit pull requests.
-📬 Contact
-Created by Abdelkrim Kaabar 
-If you're interested in collaboration, feel free to reach out.
+# رشيدة العائلة | Rachida Familia
+
+A bilingual AI-powered real estate platform for Morocco and Spain.
+
+## Features
+
+- **Property Search**: Browse real estate listings with filters for city, price, and size
+- **Price Estimator**: Get AI-powered property price estimates based on location and size
+- **Budget Advisor**: Receive personalized recommendations based on your budget
+- **AI Chat Assistant**: Ask questions about real estate markets in Morocco/Spain
+- **Seller Mode**: Add properties with AI-generated descriptions
+
+## Tech Stack
+
+- **Framework**: Next.js 16
+- **Styling**: Tailwind CSS 4
+- **AI**: Groq API (Llama 3.3 70B)
+- **Web Search**: Tavily API (optional for live data)
+- **Languages**: Arabic (RTL) & Spanish (LTR)
+
+## Setup
+
+1. Clone the repository
+2. Install dependencies:
+```bash
+bun install
+```
+
+3. Set environment variables:
+```bash
+# Required for AI features
+GROQ_API_KEY=your_groq_api_key_here
+
+# Optional for live web search
+TAVILY_API_KEY=your_tavily_api_key_here
+```
+
+4. Run development server:
+```bash
+bun run dev
+```
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── chat/       - AI chat endpoint
+│   │   ├── estimate/   - Price estimation endpoint
+│   │   ├── advice/     - Budget advisor endpoint
+│   │   └── property/   - Property listing endpoint
+│   ├── chat/           - AI assistant page
+│   ├── estimate/       - Price estimator page
+│   ├── advisor/        - Budget advisor page
+│   ├── properties/     - Property listings page
+│   ├── sell/           - Add property page
+│   └── page.tsx        - Home page
+├── lib/
+│   ├── cities.ts       - City data with price averages
+│   ├── groq.ts         - Groq AI integration
+│   ├── websearch.ts    - Tavily web search
+│   └── types.ts        - TypeScript types
+└── components/
+    └── Navigation.tsx  - Main navigation
+```
+
+## API Routes
+
+- `POST /api/chat` - Chat with AI assistant
+- `POST /api/estimate` - Property price estimation
+- `POST /api/advice` - Budget-based recommendations
+- `POST /api/property` - Add new property
+
+## Deployment
+
+Deploy to Vercel:
+```bash
+bun run build
+```
+
+Add environment variables in Vercel dashboard.
+
+## License
+
+MIT

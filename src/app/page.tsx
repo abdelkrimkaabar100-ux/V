@@ -1,39 +1,127 @@
 'use client';
 
 import Link from 'next/link';
-import { poets, poems } from '@/data/poets';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+
+const translations = {
+  ar: {
+    hero: {
+      badge: 'منصة عقارية ذكية',
+      title: 'رشيدة العائلة',
+      subtitle: 'حلول عقارية متقدمة بالذكاء الاصطناعي',
+      description: 'اكتشف أفضل الفرص العقارية في المغرب وإسبانيا. نقدم لك تقدير أسعار دقيق، نصائح استثمارية ذكية، ومساعد ذكي يجيب على جميع أسئلتك.',
+      cta: 'ابدأ الآن',
+    },
+    features: {
+      title: 'ماذا تقدم لك رشيدة العائلة؟',
+      items: [
+        {
+          emoji: '🏠',
+          title: 'العقارات',
+          desc: 'تصفح آلاف العقارات المتاحة في المغرب والإسبان',
+        },
+        {
+          emoji: '💰',
+          title: 'تقدير الأسعار',
+          desc: 'احصل على تقدير دقيق لسعر عقارك باستخدام الذكاء الاصطناعي',
+        },
+        {
+          emoji: '📊',
+          title: 'المستشار المالي',
+          desc: 'نصائح مخصصة حسب ميزانيتك واحتياجاتك',
+        },
+        {
+          emoji: '🤖',
+          title: 'المساعدة الذكية',
+          desc: 'اسأل كل سؤال عن العقارات وانتظر جواباً ذكياً',
+        },
+      ],
+    },
+  },
+  es: {
+    hero: {
+      badge: 'Plataforma Inmobiliaria Inteligente',
+      title: 'Rachida Familia',
+      subtitle: 'Soluciones Inmobiliarias Avanzadas con IA',
+      description: 'Descubre las mejores oportunidades inmobiliarias en Marruecos y España. Te ofrecemos estimaciones precisas de precios, consejos de inversión inteligentes y un asistente IA que responde todas tus preguntas.',
+      cta: 'Comenzar',
+    },
+    features: {
+      title: '¿Qué te ofrece Rachida Familia?',
+      items: [
+        {
+          emoji: '🏠',
+          title: 'Propiedades',
+          desc: 'Explora miles de propiedades disponibles en Marruecos y España',
+        },
+        {
+          emoji: '💰',
+          title: 'Estimar Precio',
+          desc: 'Obtén una estimación precisa del precio de tu propiedad con IA',
+        },
+        {
+          emoji: '📊',
+          title: 'Asesor Financiero',
+          desc: 'Consejos personalizados según tu presupuesto y necesidades',
+        },
+        {
+          emoji: '🤖',
+          title: 'Asistente IA',
+          desc: 'Haz cualquier pregunta sobre propiedades y espera una respuesta inteligente',
+        },
+      ],
+    },
+  },
+};
 
 export default function Home() {
-  const featuredPoets = poets.slice(0, 4);
-  const featuredPoems = poems.slice(0, 4);
+  const [language, setLanguage] = useState<'ar' | 'es'>('ar');
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem('language') as 'ar' | 'es' | null;
+    if (savedLang) {
+      setLanguage(savedLang);
+    }
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const t = translations[language];
+
+  if (!mounted) return null;
 
   return (
     <div className="pt-20">
       <section className="relative py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block mb-6 px-4 py-1 bg-[#d4af37]/20 rounded-full border border-[#d4af37]/30">
-            <span className="text-[#d4af37] text-sm">✨ منصة تعليمية وترفيهية</span>
+            <span className="text-[#d4af37] text-sm">{t.hero.badge}</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl mb-6 text-[#f5f5f0]" style={{ fontFamily: 'var(--font-amiri)' }}>
-            رحيق诗词
+            {t.hero.title}
           </h1>
           
-          <p className="text-xl md:text-2xl text-[#f5f5f0]/80 mb-8 leading-relaxed" style={{ fontFamily: 'var(--font-amiri)' }}>
-            استكشف عُمق الشعر العربي الإسلامي
+          <p className="text-xl md:text-2xl text-[#f5f5f0]/80 mb-4" style={{ fontFamily: 'var(--font-amiri)' }}>
+            {t.hero.subtitle}
           </p>
           
           <p className="text-lg text-[#f5f5f0]/60 mb-10 max-w-2xl mx-auto">
-            اكتشف قصائد الصحابة والتابعين، تغوص في معناها وسياقها ومشاعرها. 
-            تعلم كيف تكتب شعراً عربياً أصيلاً بطريقة ممتعة وتفاعلية.
+            {t.hero.description}
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/poets" className="btn-gold px-8 py-3 rounded-lg text-lg">
-              استكشف الشعراء
+            <Link href="/properties" className="btn-primary px-8 py-3 rounded-lg text-lg">
+              {t.hero.cta}
             </Link>
-            <Link href="/learn" className="px-8 py-3 rounded-lg border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 transition-colors">
-              تعلم الشعر
+            <Link href="/chat" className="px-8 py-3 rounded-lg border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 transition-colors">
+              {t.features.items[3].title}
             </Link>
           </div>
         </div>
@@ -41,107 +129,65 @@ export default function Home() {
 
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-1 h-10 bg-[#d4af37] rounded-full"></div>
-            <h2 className="text-3xl text-[#f5f5f0]" style={{ fontFamily: 'var(--font-amiri)' }}>
-              الشعراء المميزون
-            </h2>
-          </div>
+          <h2 className="text-3xl text-[#f5f5f0] text-center mb-12" style={{ fontFamily: 'var(--font-amiri)' }}>
+            {t.features.title}
+          </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredPoets.map((poet, index) => (
-              <Link 
-                key={poet.id} 
-                href={`/poets/${poet.id}`}
-                className={`poet-card p-6 rounded-2xl border border-[#d4af37]/20 animate-fade-in-up opacity-0`}
+            {t.features.items.map((item, index) => (
+              <div
+                key={index}
+                className="card p-6 rounded-2xl text-center animate-fade-in-up opacity-0"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-[#d4af37]/20 flex items-center justify-center text-4xl">
-                  {poet.portraitEmoji}
-                </div>
-                <h3 className="text-xl text-[#f5f5f0] text-center mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>
-                  {poet.name}
+                <div className="text-4xl mb-4">{item.emoji}</div>
+                <h3 className="text-xl text-[#f5f5f0] mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>
+                  {item.title}
                 </h3>
-                <p className="text-center text-[#d4af37] text-sm mb-2">{poet.title}</p>
-                <span className="badge badge-gold text-center block mx-auto w-fit">{poet.era}</span>
-              </Link>
+                <p className="text-[#f5f5f0]/60 text-sm">
+                  {item.desc}
+                </p>
+              </div>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <Link href="/poets" className="text-[#d4af37] hover:underline text-lg">
-              عرض جميع الشعراء →
-            </Link>
-          </div>
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-[#0d2b1a]/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-1 h-10 bg-[#d4af37] rounded-full"></div>
-            <h2 className="text-3xl text-[#f5f5f0]" style={{ fontFamily: 'var(--font-amiri)' }}>
-              القصائد المختارة
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredPoems.map((poem, index) => {
-              const poet = poets.find(p => p.id === poem.poetId);
-              return (
-                <Link 
-                  key={poem.id} 
-                  href={`/poets/${poet?.id}/poems/${poem.id}`}
-                  className={`poem-card p-6 rounded-xl animate-fade-in-up opacity-0`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <h3 className="text-xl text-[#f5f5f0] mb-3" style={{ fontFamily: 'var(--font-amiri)' }}>
-                    {poem.title}
-                  </h3>
-                  <p className="text-[#f5f5f0]/70 text-sm mb-4 line-clamp-2">
-                    {poem.verses[0]}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {poem.context && (
-                      <span className="badge badge-green text-xs">{poem.context}</span>
-                    )}
-                    {poem.location && (
-                      <span className="badge badge-green text-xs">{poem.location}</span>
-                    )}
-                    <span className="text-[#d4af37] text-sm mr-auto">
-                      ← {poet?.name}
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-[#0d2b1a]/50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl text-[#f5f5f0] mb-8" style={{ fontFamily: 'var(--font-amiri)' }}>
-            ماذا تريد أن تفعل؟
+            {language === 'ar' ? 'انطلق في رحلتك العقارية' : 'Empieza tu viaje inmobiliario'}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link href="/poets" className="p-8 rounded-2xl bg-[#2d5a3d]/30 border border-[#d4af37]/20 hover:border-[#d4af37] transition-all group">
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📚</div>
-              <h3 className="text-xl text-[#f5f5f0] mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>استكشف</h3>
-              <p className="text-[#f5f5f0]/60 text-sm">تصفح قصائد الشعراء المسلمين</p>
+            <Link href="/properties" className="p-8 rounded-2xl bg-[#2d5a3d]/30 border border-[#d4af37]/20 hover:border-[#d4af37] transition-all group">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🔍</div>
+              <h3 className="text-xl text-[#f5f5f0] mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>
+                {language === 'ar' ? 'استكشف العقارات' : 'Explorar Propiedades'}
+              </h3>
+              <p className="text-[#f5f5f0]/60 text-sm">
+                {language === 'ar' ? 'ابحث عن العقار المثالي' : 'Encuentra la propiedad perfecta'}
+              </p>
             </Link>
             
-            <Link href="/write" className="p-8 rounded-2xl bg-[#2d5a3d]/30 border border-[#d4af37]/20 hover:border-[#d4af37] transition-all group">
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">✍️</div>
-              <h3 className="text-xl text-[#f5f5f0] mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>أكتب</h3>
-              <p className="text-[#f5f5f0]/60 text-sm">اكتب قصائدك الخاصة بمساعدة</p>
+            <Link href="/estimate" className="p-8 rounded-2xl bg-[#2d5a3d]/30 border border-[#d4af37]/20 hover:border-[#d4af37] transition-all group">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">💰</div>
+              <h3 className="text-xl text-[#f5f5f0] mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>
+                {language === 'ar' ? 'قدر سعر عقارك' : 'Estimar Precio'}
+              </h3>
+              <p className="text-[#f5f5f0]/60 text-sm">
+                {language === 'ar' ? 'احصل على تقدير فوري' : 'Obtén una estimación instantánea'}
+              </p>
             </Link>
             
-            <Link href="/learn" className="p-8 rounded-2xl bg-[#2d5a3d]/30 border border-[#d4af37]/20 hover:border-[#d4af37] transition-all group">
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎮</div>
-              <h3 className="text-xl text-[#f5f5f0] mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>تعلم</h3>
-              <p className="text-[#f5f5f0]/60 text-sm">تعلم الشعر بطريقة لعب ممتعة</p>
+            <Link href="/chat" className="p-8 rounded-2xl bg-[#2d5a3d]/30 border border-[#d4af37]/20 hover:border-[#d4af37] transition-all group">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🤖</div>
+              <h3 className="text-xl text-[#f5f5f0] mb-2" style={{ fontFamily: 'var(--font-amiri)' }}>
+                {language === 'ar' ? 'اسأل خبير العقارات' : 'Preguntar al Experto'}
+              </h3>
+              <p className="text-[#f5f5f0]/60 text-sm">
+                {language === 'ar' ? 'مساعد ذكي على مدار الساعة' : 'Asistente IA 24/7'}
+              </p>
             </Link>
           </div>
         </div>
@@ -150,10 +196,7 @@ export default function Home() {
       <footer className="py-8 px-4 border-t border-[#d4af37]/20">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-[#f5f5f0]/60 text-sm">
-            رحيق诗词 - منصة الشعر العربي الإسلامي 🏛️
-          </p>
-          <p className="text-[#f5f5f0]/40 text-xs mt-2">
-            لتعلم وتعلّم وإحياء تراث الشعر العربي الإسلامي
+            رشيدة العائلة | Rachida Familia - منصة عقارية ذكية 🏠
           </p>
         </div>
       </footer>

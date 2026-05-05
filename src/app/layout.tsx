@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Naskh_Arabic, Amiri, Cairo } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 
@@ -24,9 +25,16 @@ const cairo = Cairo({
   display: "swap",
 });
 
+const notoSans = Noto_Sans({
+  variable: "--font-noto-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "رحيق诗词 - الشعر العربي الإسلامي",
-  description: "منصة متخصصة في الشعر العربي الإسلامي، استكشف قصائد الصحابة والتابعين مع تحليل عميق للسياق والمشاعر والمعنى",
+  title: "رشيدة العائلة | Rachida Familia",
+  description: "منصة عقارية ذكية للمغرب والإسبان بخدمة الذكاء الاصطناعي - AI-Powered Real Estate Platform for Morocco & Spain",
 };
 
 export default function RootLayout({
@@ -36,8 +44,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${notoNaskh.variable} ${amiri.variable} ${cairo.variable} font-[family-name:var(--font-noto-naskh)] antialiased`}>
-        <div className="min-h-screen arabic-pattern">
+      <body className={`${notoNaskh.variable} ${amiri.variable} ${cairo.variable} ${notoSans.variable} antialiased`}>
+        <div className="min-h-screen bg-pattern">
           <Navigation />
           <main>{children}</main>
         </div>
